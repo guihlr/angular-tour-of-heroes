@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 10px;
+  overflow-x: hidden;
+  border: 1px solid #000;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+section {
+  display: table;
+}
+
+.label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.button-row {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.hero-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+}

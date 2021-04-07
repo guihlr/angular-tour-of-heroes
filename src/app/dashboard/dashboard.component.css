@@ -19,8 +19,6 @@ h2 {
 }
 
 a {
-  background-color: #3f525c;
-  border-radius: 2px;
   padding: 1rem;
   font-size: 1.2rem;
   text-decoration: none;
@@ -34,7 +32,7 @@ a {
 
   /* flexbox */
   order: 0;
-  flex: 0 1 auto;
+  flex: auto;
   align-self: auto;
 }
 
@@ -43,8 +41,4 @@ a {
     width: 18%;
     box-sizing: content-box;
   }
-}
-
-a:hover {
-  background-color: #000;
 }
