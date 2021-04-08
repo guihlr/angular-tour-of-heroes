@@ -4,9 +4,14 @@ export enum HeroUniverse {
 }
 
 export interface Hero {
-    id: number;
+    id: string;
     name: string;
     imageUrl: string;
     universe: HeroUniverse;
     description: string;
+}
+
+export interface HeroGetResponse {
+    cursor: string;
+    heroes: Array<Hero> // ou: heroes: Hero[];
 }

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,10 +15,14 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HeroEditComponent } from './hero-edit/hero-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { NewHeroComponent } from './new-hero/new-hero.component';
+import { HeroFormComponent } from './hero-form/hero-form.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 
@@ -35,13 +38,14 @@ import {MatButtonModule} from '@angular/material/button';
     MatCardModule,
     MatSelectModule,
     MatButtonModule,
+    MatIconModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, { dataEncapsulation: false }
+    // ),
 
     BrowserAnimationsModule
   ],
@@ -52,7 +56,9 @@ import {MatButtonModule} from '@angular/material/button';
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    HeroEditComponent
+    HeroEditComponent,
+    NewHeroComponent,
+    HeroFormComponent
   ],
   bootstrap: [AppComponent]
 })
