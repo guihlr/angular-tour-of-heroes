@@ -1,30 +1,36 @@
-<div class="container">
-    <div *ngIf="hero">
+<div *ngIf="hero">
+    <form class="container" [formGroup]="formulario" (ngSubmit)="save()">
+
         <h2 class="hero-name">{{hero.name | uppercase}} - ID: {{hero.id}}</h2>
 
         <mat-form-field class="full-width">
             <mat-label>Hero name</mat-label>
-            <input matInput placeholder="Hero name" [(ngModel)]="hero.name">
+            <input matInput placeholder="Hero name" formControlName="name">
+            <mat-error *ngIf="formulario.get('name').hasError('required') ">O nome é obrigatório</mat-error>
+            <mat-error *ngIf="formulario.get('name').hasError('maxlength') ">Você excedeu o limite de 30 caracteres
+            </mat-error>
+            <mat-error *ngIf="formulario.get('name').hasError('minlength') ">Digite o minimo de 3 caracteres</mat-error>
         </mat-form-field>
 
         <br>
         <mat-form-field class="full-width">
             <mat-label>Hero Description: </mat-label>
-            <input matInput placeholder="Hero description" [(ngModel)]="hero.description">
+            <input matInput placeholder="Hero description" formControlName="description">
+            <mat-error *ngIf="formulario.get('description').hasError('required')">A descrição precisa ter mais de 3
+                caracteres</mat-error>
         </mat-form-field>
 
         <br>
         <mat-form-field class="full-width">
             <mat-label>Hero Image Url: </mat-label>
-            <input matInput placeholder="Hero image" [(ngModel)]="hero.imageUrl">
+            <input matInput placeholder="Hero image" formControlName="imageUrl">
+            <mat-error *ngIf="formulario.get('imageUrl').hasError('required')">URL válida é obrigatório</mat-error>
         </mat-form-field>
-
-
 
         <br>
         <mat-form-field class="full-width" appearance="fill">
             <mat-label>Universe</mat-label>
-            <mat-select [(ngModel)]="hero.universe">
+            <mat-select formControlName="universe">
                 <mat-option *ngFor=" let universe of heroUniverses" [value]="universe">
                     {{universe | uppercase}}
                 </mat-option>
@@ -34,11 +40,10 @@
 
         <section>
             <div class="button-row">
-                <button mat-raised-button (click)="onGoBack()">go back</button>
-                <button mat-raised-button color="primary" (click)="save()">save</button>
+                <button mat-raised-button (click)="onGoBack()" type="button">go back</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!formulario.valid">save</button>
             </div>
         </section>
 
-
-    </div>
+    </form>
 </div>

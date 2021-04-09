@@ -10,6 +10,7 @@ import { HeroService } from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
+  cursor: string;
 
   constructor(private heroService: HeroService) { }
 
@@ -18,10 +19,23 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.heroes);
+    this.heroService.getHeroes(this.cursor)
+      .subscribe(heroes => {
+        if (this.cursor) {
+          this.heroes = this.heroes.concat(heroes.heroes)
+        } else {
+          this.heroes = heroes.heroes
+        }
+        this.cursor = heroes.cursor
+      });
   }
 
+  onScrollDown() {
+    console.log('scrolled')
+    if (this.cursor) {
+      this.getHeroes()
+    }
+  }
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);

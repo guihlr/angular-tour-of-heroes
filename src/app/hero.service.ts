@@ -23,16 +23,16 @@ export class HeroService {
     private messageService: MessageService) { }
 
   /** GET heroes from the server */
-  getHeroes(): Observable<HeroGetResponse> {
-    return this.http.get<HeroGetResponse>(`${this.heroesUrl}/heroes`)
+  getHeroes(cursor?: string): Observable<HeroGetResponse> {
+    return this.http.get<HeroGetResponse>(`${this.heroesUrl}/heroes?cursor=${cursor || ''}`)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(_ => this.log('fectched heroes')),
         catchError(this.handleError<HeroGetResponse>('getHeroes', { heroes: [], cursor: undefined }))
       );
   }
 
   /** GET heroes from the server */
-  getTopHeroes(): Observable<HeroGetResponse> {
+  getTopHeroes(cursor?: string): Observable<HeroGetResponse> {
     return this.http.get<HeroGetResponse>(`${this.heroesUrl}/top-heroes`)
       .pipe(
         tap(_ => this.log('fetched top heroes')),
@@ -40,26 +40,30 @@ export class HeroService {
       );
   }
 
+
+
+
+
   /** GET hero by id. Return `undefined` when id not found */
   getHeroNo404<Data>(id: string): Observable<Hero> {
-    const url = `${this.heroesUrl}/hero/?id=${id}`;
+    const url = `${this.heroesUrl} / hero /? id = ${id}`;
     return this.http.get<Hero[]>(url)
       .pipe(
         map(heroes => heroes[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} hero id=${id}`);
+          this.log(`${outcome} hero id = ${id}`);
         }),
-        catchError(this.handleError<Hero>(`getHero id=${id}`))
+        catchError(this.handleError<Hero>(`getHero id = ${id}`))
       );
   }
 
   /** GET hero by id. Will 404 if id not found */
   getHero(id: string): Observable<Hero> {
-    const url = `${this.heroesUrl}/hero/${id}`;
+    const url = `${this.heroesUrl} / hero / ${id}`;
     return this.http.get<Hero>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Hero>(`getHero id=${id}`))
+      tap(_ => this.log(`fetched hero id = ${id}`)),
+      catchError(this.handleError<Hero>(`getHero id = ${id}`))
     );
   }
 
@@ -69,7 +73,7 @@ export class HeroService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+    return this.http.get<Hero[]>(`${this.heroesUrl} /? name = ${term}`).pipe(
       tap(x => x.length ?
         this.log(`found heroes matching "${term}"`) :
         this.log(`no heroes matching "${term}"`)),
@@ -84,28 +88,30 @@ export class HeroService {
     // Seguindo a documentacao o heroi precisa ser enviado dentro de um objeto
     // com a chave "hero"
     const heroParams = { hero: hero };
-    return this.http.post<Hero>(`${this.heroesUrl}/heroes`, heroParams, this.httpOptions).pipe(
-      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+    return this.http.post<Hero>(`${this.heroesUrl} / heroes`, heroParams, this.httpOptions).pipe(
+      tap((newHero: Hero) => this.log(`added hero w / id=${newHero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
     );
   }
 
   /** DELETE: delete the hero from the server */
   deleteHero(id: string): Observable<Hero> {
-    const url = `${this.heroesUrl}/hero/${id}`;
+    const url = `${this.heroesUrl} / hero / ${id}`;
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
+      tap(_ => this.log(`deleted hero id = ${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
   }
 
-  /** PUT: update the hero on the server */
-  updateHero(hero: Hero): Observable<Hero> {
-    return this.http.post<Hero>(`${this.heroesUrl}/hero`, hero, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
-      catchError(this.handleError<Hero>('updateHero'))
+  /** POST: update the hero on the server */
+  updateHero(hero: Hero): Observable<any> {
+    const heroParams = { hero: hero };
+    return this.http.post(`${this.heroesUrl} / hero / ${hero.id}`, heroParams, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id = ${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
     );
   }
+
 
   /**
    * Handle Http operation that failed.

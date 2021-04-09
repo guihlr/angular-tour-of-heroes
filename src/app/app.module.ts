@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
@@ -22,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NewHeroComponent } from './new-hero/new-hero.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import { MatIconModule } from '@angular/material/icon';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
@@ -39,6 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
+    ReactiveFormsModule,
+    InfiniteScrollModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
@@ -58,8 +57,9 @@ import { MatIconModule } from '@angular/material/icon';
     HeroSearchComponent,
     HeroEditComponent,
     NewHeroComponent,
-    HeroFormComponent
+    HeroFormComponent,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [FormBuilder]
 })
 export class AppModule { }
