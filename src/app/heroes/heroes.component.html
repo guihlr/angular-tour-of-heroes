@@ -8,17 +8,16 @@
 <div class="search-results" infiniteScroll (scrolled)="onScrollDown()">
     <ul class="heroes">
         <li *ngFor="let hero of heroes">
-            <a routerLink="/detail/{{hero.id}}">
-                <span class="name">{{hero.name}}</span>
-                <mat-card class="card-container">
-                    <img class="card-image" mat-card-image src="{{hero.imageUrl}}">
-                </mat-card>
-            </a>
-            <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
+            <a class="hero__name" routerLink="/detail/{{hero.id}}">{{hero.name}}</a>
+            <mat-card class="card__container">
+                <img class="card__image" mat-card-image src="{{hero.imageUrl}}">
+                <button class="btn__delete" title="delete hero" (click)="delete(hero)">X</button>
+            </mat-card>
+
         </li>
     </ul>
 </div>
 
-<button class="btn" mat-fab color="accent" label="Add new hero" [routerLink]="['/new']">
+<button class="btn__add" mat-fab color="accent" label="Add new hero" [routerLink]="['/new']">
     <mat-icon>add</mat-icon>
 </button>

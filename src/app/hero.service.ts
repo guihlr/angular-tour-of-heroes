@@ -46,7 +46,7 @@ export class HeroService {
 
   /** GET hero by id. Return `undefined` when id not found */
   getHeroNo404<Data>(id: string): Observable<Hero> {
-    const url = `${this.heroesUrl} / hero /? id = ${id}`;
+    const url = `${this.heroesUrl}/hero/?id=${id}`;
     return this.http.get<Hero[]>(url)
       .pipe(
         map(heroes => heroes[0]), // returns a {0|1} element array

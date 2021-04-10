@@ -45,3 +45,24 @@ nav a:hover {
 nav a.active {
   background-color: black;
 }
+
+.card__image {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0;
+}
+
+.btn__delete {
+  float: right;
+  border: 0;
+  padding: 0;
+  margin-right: 60px;
+  font-size: 1rem;
+}
+
+.hero__name {
+  padding-left: 80px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
