@@ -1,23 +1,29 @@
 <h2>My Heroes</h2>
 
-
-<a *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">
-
-</a>
+<a *ngFor="let hero of heroes" routerLink="/detail/{{ hero.id }}"> </a>
 
 <div class="search-results" infiniteScroll (scrolled)="onScrollDown()">
-    <ul class="heroes">
-        <li *ngFor="let hero of heroes">
-            <a class="hero__name" routerLink="/detail/{{hero.id}}">{{hero.name}}</a>
-            <mat-card class="card__container">
-                <img class="card__image" mat-card-image src="{{hero.imageUrl}}">
-                <button class="btn__delete" title="delete hero" (click)="delete(hero)">X</button>
-            </mat-card>
-
-        </li>
-    </ul>
+  <ul class="heroes">
+    <li *ngFor="let hero of heroes">
+      <a class="hero__name" routerLink="/detail/{{ hero.id }}">{{
+        hero.name
+      }}</a>
+      <mat-card class="card__container">
+        <img class="card__image" mat-card-image src="{{ hero.imageUrl }}" />
+        <button class="btn__delete" title="delete hero" (click)="delete(hero)">
+          X
+        </button>
+      </mat-card>
+    </li>
+  </ul>
 </div>
 
-<button class="btn__add" mat-fab color="accent" label="Add new hero" [routerLink]="['/new']">
-    <mat-icon>add</mat-icon>
+<button
+  class="btn__add"
+  mat-fab
+  color="accent"
+  label="Add new hero"
+  [routerLink]="['/new']"
+>
+  <mat-icon>add</mat-icon>
 </button>

@@ -20,11 +20,6 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
 import { MatIconModule } from '@angular/material/icon';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-
-
-
-
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -46,7 +41,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     //   InMemoryDataService, { dataEncapsulation: false }
     // ),
 
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   declarations: [
     AppComponent,
@@ -60,6 +55,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     HeroFormComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [FormBuilder]
+  providers: [FormBuilder],
 })
-export class AppModule { }
+export class AppModule {}
